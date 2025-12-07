@@ -31,8 +31,6 @@ The project includes:
 
 # 📸 Project Images
 
-> Replace the placeholders below by inserting your actual images.
-
 ### 1️⃣ Quadruped CAD Model
 
 <img width="878" height="581" alt="Screenshot 2025-12-06 at 7 45 06 PM" src="https://github.com/user-attachments/assets/b5c6a3fa-ab37-4bac-ab43-4fcf0d22272d" />
