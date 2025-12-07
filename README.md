@@ -1,4 +1,4 @@
-# 🐕 Quadruped Robot Simulation — ROS 2 Humble (Ubuntu 22.04)
+#  Quadruped Robot Simulation
 
 This repository contains the full simulation setup for a custom-designed quadruped robot built for gait generation, URDF visualization, and Gazebo/RViz-based testing.
 The mechanical design, control logic, and simulation configurations were developed as part of a robotics project focused on modular quadruped locomotion.
