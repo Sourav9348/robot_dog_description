@@ -1,0 +1,32 @@
+digraph G {
+node [shape=box];
+"world" [label="world"];
+"base_link" [label="base_link"];
+"lw1_Link" [label="lw1_Link"];
+"lf1_Link" [label="lf1_Link"];
+"lw2_Link" [label="lw2_Link"];
+"lf2_Link" [label="lf2_Link"];
+"rw1_Link" [label="rw1_Link"];
+"rf2_Link" [label="rf2_Link"];
+"rw2_Link" [label="rw2_Link"];
+"rf1_Link" [label="rf1_Link"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"world" -> "fixed" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"fixed" -> "base_link"
+"base_link" -> "lw1" [label="xyz: -0.0486519 -0.159586 0.0938765 \nrpy: 1.48038 0.956462 -0.0465508"]
+"lw1" -> "lw1_Link"
+"lw1_Link" -> "lf1" [label="xyz: 0.0729332 -0.0683258 -0.00383941 \nrpy: -0.0141932 -0.0273627 0.956962"]
+"lf1" -> "lf1_Link"
+"base_link" -> "lw2" [label="xyz: 0.183348 -0.166698 0.0918874 \nrpy: 1.59975 0.974146 0.0546662"]
+"lw2" -> "lw2_Link"
+"lw2_Link" -> "lf2" [label="xyz: 0.0658782 -0.0751816 -0.00279018 \nrpy: -0.0106799 -0.0260471 0.778202"]
+"lf2" -> "lf2_Link"
+"base_link" -> "rw1" [label="xyz: -0.0486519 -0.00400909 0.0948832 \nrpy: 1.58655 0.754751 0.0397497"]
+"rw1" -> "rw1_Link"
+"rw1_Link" -> "rf2" [label="xyz: 0.0606688 -0.0794231 -0.00335585 \nrpy: -0.0667513 -0.0289518 0.755145"]
+"rf2" -> "rf2_Link"
+"base_link" -> "rw2" [label="xyz: 0.183348 -0.00946754 0.0967989 \nrpy: 1.58049 0.427788 0.0446092"]
+"rw2" -> "rw2_Link"
+"rw2_Link" -> "rf1" [label="xyz: 0.0385076 -0.0918502 -0.00898352 \nrpy: 0.0464431 -0.0405869 0.428164"]
+"rf1" -> "rf1_Link"
+}

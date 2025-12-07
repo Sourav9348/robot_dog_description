@@ -1,0 +1,340 @@
+<?xml version="1.0"?>
+<robot name="Assem_urdf">
+
+  <ros2_control name="RobotDogSystem" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+
+    <joint name="lw1">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="lf1">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="lw2">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="lf2">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rw1">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rf1">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rw2">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rf2">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
+  <!-- ==================== Gazebo ros2_control plugin ==================== -->
+  <gazebo>
+    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+      <!-- This YAML is installed into ros2_ws/install/share/robot_dog_description/config -->
+      <parameters>/home/evanslab/ros2_ws/install/share/robot_dog_description/config/dog_ros2_control.yaml</parameters>
+      <!-- Node that holds robot_description -->
+      <robot_param_node>robot_state_publisher</robot_param_node>
+    </plugin>
+  </gazebo>
+
+
+  <!-- ====================== BASE ====================== -->
+
+  <link name="world"/>
+
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child  link="base_link"/>
+  </joint>
+  
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <mass value="0.6"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.02" iyz="0" izz="0.03"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.00" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_dog_description/meshes/base_link.STL"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.8 0.8 0.8 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.4 0.25 0.1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  
+
+  <!-- ====================== LEFT FRONT ====================== -->
+  <link name="lw1_Link">
+    <inertial>
+      <origin xyz="0.0294355071318292 -0.0279861881345817 0.0107023152362788" rpy="0 0 0"/>
+      <mass value="0.0102661782337473"/>
+      <inertia ixx="5.3112238187855E-06" ixy="5.32348621024683E-06" ixz="4.49856538835351E-09"
+               iyy="5.9870101216466E-06" iyz="-1.19290211129481E-08" izz="1.12133552255117E-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_dog_description/meshes/lw1_Link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.12"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="lw1" type="continuous">
+    <origin xyz="-0.0486518853313576 -0.159586305367867 0.0938764579327735"
+            rpy="1.4803808022734 0.956461914840796 -0.0465507800710082"/>
+    <parent link="base_link"/>
+    <child link="lw1_Link"/>
+    <axis xyz="0 0.0334629964207702 -0.999439957111253"/>
+    <gazebo><damping>1.0</damping></gazebo>
+  </joint>
+
+  <link name="lf1_Link">
+    <inertial>
+      <origin xyz="-0.0347470712199882 -0.0347174334832962 0.01153794551305" rpy="0 0 0"/>
+      <mass value="0.0138724243812204"/>
+      <inertia ixx="7.87491119046254E-06" ixy="-7.64039904525002E-06" ixz="-4.67363714326181E-08"
+               iyy="8.0619995318235E-06" iyz="-4.40213169501729E-08" izz="1.55450824925124E-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_dog_description/meshes/lf1_Link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.03" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.04 0.16"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="lf1" type="continuous">
+    <origin xyz="0.0729332006769328 -0.0683257813162797 -0.00383940754607373"
+            rpy="-0.0141931658643792 -0.0273626728574026 0.956962105472334"/>
+    <parent link="lw1_Link"/>
+    <child link="lf1_Link"/>
+    <axis xyz="0 0.0334629964207686 -0.999439957111253"/>
+    <gazebo><damping>1.0</damping></gazebo>
+  </joint>
+
+  <!-- ====================== LEFT REAR ====================== -->
+  <link name="lw2_Link">
+    <inertial>
+      <origin xyz="0.0265881467654214 -0.0305557124583063 0.00460678958994101" rpy="0 0 0"/>
+      <mass value="0.0102661804611414"/>
+      <inertia ixx="6.35547144760047E-06" ixy="5.28705564184227E-06" ixz="3.92611234937417E-08"
+               iyy="4.94315302408169E-06" iyz="-5.33953543756357E-08" izz="1.1212968878631E-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_dog_description/meshes/lw2_Link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.12"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="lw2" type="continuous">
+    <origin xyz="0.183348114668642 -0.166697590516129 0.0918873779460381"
+            rpy="1.59975461206515 0.974145514035378 0.0546662405475365"/>
+    <parent link="base_link"/>
+    <child link="lw2_Link"/>
+    <axis xyz="0 0.0370869976042873 -0.999312040660323"/>
+    <gazebo><damping>1.0</damping></gazebo>
+  </joint>
+
+  <link name="lf2_Link">
+    <inertial>
+      <origin xyz="-0.0349975693805105 -0.034227497842428 0.00397972100937141" rpy="0 0 0"/>
+      <mass value="0.0138724243812204"/>
+      <inertia ixx="7.76298952907492E-06" ixy="-7.63800576274064E-06" ixz="-7.2853938017049E-08"
+               iyy="8.17429882349408E-06" iyz="-6.85400781872853E-08" izz="1.55447048622295E-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_dog_description/meshes/lf2_Link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.03" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.04 0.16"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="lf2" type="continuous">
+    <origin xyz="0.0658782240381146 -0.0751816100831581 -0.00279017972324053"
+            rpy="-0.0106799214533978 -0.0260470967610606 0.778201657752925"/>
+    <parent link="lw2_Link"/>
+    <child link="lf2_Link"/>
+    <axis xyz="0 0.0370869976042862 -0.999312040660323"/>
+    <gazebo><damping>1.0</damping></gazebo>
+  </joint>
+
+  <!-- ====================== RIGHT FRONT ====================== -->
+  <link name="rw1_Link">
+    <inertial>
+      <origin xyz="0.0244856611540245 -0.0323386928164625 0.00536429001724241" rpy="0 0 0"/>
+      <mass value="0.0102661782360145"/>
+      <inertia ixx="7.05841606923374E-06" ixy="5.13190985346709E-06" ixz="3.61410696387077E-07"
+               iyy="4.27324734220006E-06" iyz="-4.82289848949056E-07" izz="1.1179925758767E-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_dog_description/meshes/rw1_Link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.12"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="rw1" type="continuous">
+    <origin xyz="-0.0486518853313573 -0.0040090858436723 0.0948832020632322"
+            rpy="1.58655375452448 0.754750632992008 0.0397496770511494"/>
+    <parent link="base_link"/>
+    <child link="rw1_Link"/>
+    <axis xyz="0 0.0422151848153148 -0.999108541736587"/>
+    <gazebo><damping>1.0</damping></gazebo>
+  </joint>
+
+  <link name="rf2_Link">
+    <inertial>
+      <origin xyz="-0.0369322169051506 -0.0324986433354692 0.00407101301591617" rpy="0 0 0"/>
+      <mass value="0.0138724243812203"/>
+      <inertia ixx="6.87151407761057E-06" ixy="-7.50120314525142E-06" ixz="-9.56825391988332E-07"
+               iyy="9.16935261774649E-06" iyz="-8.1518207405121E-07" izz="1.54411265194409E-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_dog_description/meshes/rf2_Link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.03" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.04 0.16"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="rf2" type="continuous">
+    <origin xyz="0.0606688252702355 -0.0794231193619931 -0.00335585326559978"
+            rpy="-0.0667513450446326 -0.0289517704377246 0.755145013763537"/>
+    <parent link="rw1_Link"/>
+    <child link="rf2_Link"/>
+    <axis xyz="0 0.0973417259455815 -0.995251017778899"/>
+    <gazebo><damping>1.0</damping></gazebo>
+  </joint>
+
+  <!-- ====================== RIGHT REAR ====================== -->
+  <link name="rw2_Link">
+    <inertial>
+      <origin xyz="0.015541476475949 -0.0373018787417395 -0.00125830631749935" rpy="0 0 0"/>
+      <mass value="0.0102661782607277"/>
+      <inertia ixx="9.40202428147302E-06" ixy="3.76252661144346E-06" ixz="4.60117044556986E-07"
+               iyy="2.03202596292605E-06" iyz="-1.11722265307518E-06" izz="1.10775389722505E-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_dog_description/meshes/rw2_Link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.12"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="rw2" type="continuous">
+    <origin xyz="0.183348114668642 -0.0094675357369486 0.0967989265294509"
+            rpy="1.58048771736314 0.42778792378601 0.0446091795717887"/>
+    <parent link="base_link"/>
+    <child link="rw2_Link"/>
+    <axis xyz="0 0.097341725945581 -0.995251017778899"/>
+    <gazebo><damping>1.0</damping></gazebo>
+  </joint>
+
+  <link name="rf1_Link">
+    <inertial>
+      <origin xyz="-0.0382049470391163 -0.0305085972068322 0.0015826454128704" rpy="0 0 0"/>
+      <mass value="0.0138724243812203"/>
+      <inertia ixx="6.25889588174784E-06" ixy="-7.42756117541375E-06" ixz="-5.43795913468122E-07"
+               iyy="9.70931517647486E-06" iyz="-4.2925412184231E-07" izz="1.55137821565756E-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_dog_description/meshes/rf1_Link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.03" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.04 0.16"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="rf1" type="continuous">
+    <origin xyz="0.0385075622975288 -0.0918502257847256 -0.00898352209307943"
+            rpy="0.0464430751418109 -0.0405869350659848 0.428163754008178"/>
+    <parent link="rw2_Link"/>
+    <child link="rf1_Link"/>
+    <axis xyz="0 0.0422151848153148 -0.999108541736587"/>
+    <gazebo><damping>1.0</damping></gazebo>
+  </joint>
+
+</robot>

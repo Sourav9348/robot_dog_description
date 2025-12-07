@@ -1,0 +1,16 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+
+Visualization Manager:
+  Displays:
+    - Class: rviz_default_plugins/RobotModel
+      Name: RobotModel
+      Enabled: true
+      Visual Enabled: false
+      Collision Enabled: true
+  Global Options:
+    Fixed Frame: base_link
+    Background Color: 48; 48; 48
+  Tools:
+    - Class: rviz_default_plugins/Interact
